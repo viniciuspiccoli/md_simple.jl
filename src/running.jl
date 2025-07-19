@@ -40,12 +40,13 @@ results = run_md!(sim, 100.0, 100, "argon_2d.xyz")
 
 # --- Calculate g(r) ---
 r, g = compute_rdf("argon_2d.xyz")
-
 using LaTeXStrings
-
-plot(r, g, xlabel="r (Å)", ylabel="g(r)", title="Radial Distribution Function", legend=false)
+plot_font = "Computer Modern"
+default(fontfamily=plot_font, linewidth=2.0, framestyle=:box, label=nothing)
+scalefontsizes();scalefontsizes(1.2)
+plot(xlims=(0,20), grid=:true)
+plot!(r, g, xlabel="r (Å)", ylabel="g(r)", title="Radial Distribution Function", legend=false, label="Argon - LJ")
 savefig("gr.png")
-
 
 #=
 # --- Calculate Coordination & Structure ---
